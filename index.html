@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helloooo!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            color: white;
+            animation: fadeIn 1s ease-in;
+        }
+
+        h1 {
+            font-size: 6rem;
+            margin-bottom: 2rem;
+            animation: wave 2s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        p {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .emoji {
+            font-size: 4rem;
+            animation: bounce 1s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        .button {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            font-weight: bold;
+        }
+
+        .button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .bubbles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -100px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: rise 10s infinite ease-in;
+        }
+
+        .bubble:nth-child(1) {
+            left: 10%;
+            width: 80px;
+            height: 80px;
+            animation-delay: 0s;
+        }
+
+        .bubble:nth-child(2) {
+            left: 20%;
+            width: 40px;
+            height: 40px;
+            animation-delay: 2s;
+        }
+
+        .bubble:nth-child(3) {
+            left: 35%;
+            width: 60px;
+            height: 60px;
+            animation-delay: 4s;
+        }
+
+        .bubble:nth-child(4) {
+            left: 50%;
+            width: 50px;
+            height: 50px;
+            animation-delay: 0s;
+        }
+
+        .bubble:nth-child(5) {
+            left: 65%;
+            width: 70px;
+            height: 70px;
+            animation-delay: 3s;
+        }
+
+        .bubble:nth-child(6) {
+            left: 80%;
+            width: 45px;
+            height: 45px;
+            animation-delay: 1s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes wave {
+            0%, 100% {
+                transform: rotate(-5deg);
+            }
+            50% {
+                transform: rotate(5deg);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes rise {
+            to {
+                bottom: 100vh;
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            p {
+                font-size: 1.2rem;
+            }
+
+            .emoji {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bubbles">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
+
+    <div class="container">
+        <h1>Helloooo!</h1>
+        <div class="emoji">👋</div>
+        <p>Welcome to your friendly greeting page</p>
+        <button class="button" onclick="changeGreeting()">Say Hi!</button>
+        <p id="response" style="margin-top: 2rem; font-size: 2rem; min-height: 3rem;"></p>
+    </div>
+
+    <script>
+        const greetings = [
+            "👋 Hey there!",
+            "🎉 Hiiii!",
+            "😊 Hello, friend!",
+            "🌟 Greetings!",
+            "💫 What's up!",
+            "🎈 Howdy!",
+            "✨ Heya!",
+            "🌈 Hi hi hi!"
+        ];
+
+        function changeGreeting() {
+            const response = document.getElementById('response');
+            const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+            response.textContent = randomGreeting;
+            response.style.animation = 'none';
+            setTimeout(() => {
+                response.style.animation = 'fadeIn 0.5s ease-in';
+            }, 10);
+        }
+    </script>
+</body>
+</html>
